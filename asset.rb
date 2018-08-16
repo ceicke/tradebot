@@ -6,7 +6,7 @@ class Asset < ActiveRecord::Base
   scope :active, -> { where("active = '1'") }
 
   def long
-    rate = $client.sell_price(currency_pair: 'BTC-EUR').amount
+    rate = $client.buy_price(currency_pair: 'BTC-EUR').amount
     self.btc_value = $max_eur_amount / rate
     self.rate = rate
     self.active = 1
