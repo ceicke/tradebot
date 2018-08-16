@@ -2,6 +2,7 @@
 
 require 'coinbase/wallet'
 require 'active_record'
+require 'ascii_chart'
 
 require_relative 'asset'
 require_relative 'asset_history'

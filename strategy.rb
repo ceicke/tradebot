@@ -8,7 +8,9 @@ class Strategy
       Asset.active.each_with_index do |asset, index|
 
         sleep $sleep_time if index > 0
+
         asset_history = asset.record_history
+        asset.plot_history
 
         # do nothing if we only have one history point
         if asset.asset_histories.length < 10

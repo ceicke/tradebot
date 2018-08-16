@@ -84,4 +84,14 @@ class Asset < ActiveRecord::Base
   def record_history
     AssetHistory.create(asset_id: self.id, rate: $client.sell_price(currency_pair: 'BTC-EUR').amount)
   end
+
+  def plot_history
+    puts ''
+    puts "Asset #{self.id} plot:"
+    puts ''
+    puts AsciiChart.plot((0...self.asset_histories.length).map { |i|
+      self.asset_histories[i].rate
+    }, {height: 10})
+    puts ''
+  end
 end
