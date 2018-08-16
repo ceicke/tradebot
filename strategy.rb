@@ -5,7 +5,7 @@ class Strategy
     initialize_assets
 
     while true
-      Asset.all.each_with_index do |asset, index|
+      Asset.active.each_with_index do |asset, index|
 
         sleep $sleep_time if index > 0
         asset_history = asset.record_history
