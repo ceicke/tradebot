@@ -50,7 +50,7 @@ class Asset < ActiveRecord::Base
   def shortable?
     latest_rate = self.asset_histories.order('created_at').last.rate
 
-    return latest_rate - self.rate >= $minimum_win_eur_amount
+    return latest_rate - self.rate >= $minimum_win_eur_amount + $max_eur_amount
   end
 
   def upward_trend?

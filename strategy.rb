@@ -32,9 +32,15 @@ class Strategy
 
         # sell if we are detecting a downward trend and the asset is shortable
         if asset.downward_trend?
-          Logger.log "Asset #{asset.id} is on a downward trend (initial: #{asset.rate}, current: #{asset_history.rate}). Shorting."
-          asset.short if asset.shortable?
-          initialize_assets false
+          Logger.log "Asset #{asset.id} is on a downward trend (initial: #{asset.rate}, current: #{asset_history.rate})."
+          if asset.shortable?
+            Logger.log 'Shorting'
+            asset.short
+            initialize_assets false
+          else
+            Logger.log 'Not shortable.'
+          end
+
         end
 
       end
