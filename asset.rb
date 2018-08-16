@@ -35,10 +35,10 @@ class Asset < ActiveRecord::Base
       $account.sell(amount: self.btc_value, currency: 'BTC') unless $trial_mode
 
       if self.save
-        Trade.create(asset_id: self.id, trade_type: 'sell', btc_value: self.btc_value, rate: rate, win: (rate - self.rate) * self.btc_value)
+        Trade.create(asset_id: self.id, trade_type: 'sell', btc_value: self.btc_value, rate: rate, win: self.current_win)
       end
 
-      Logger.log "Short: #{self.id}, BTC: #{self.btc_value}, Rate: #{rate}, Initial Rate: #{self.rate}, Win: #{(rate - self.rate) * self.btc_value} EUR"
+      Logger.log "Short: #{self.id}, BTC: #{self.btc_value}, Rate: #{rate}, Initial Rate: #{self.rate}, Win: #{self.current_win} EUR"
 
     rescue Exception => e
       Logger.log "Short failed: #{e}"

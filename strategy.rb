@@ -37,11 +37,11 @@ class Strategy
         if asset.downward_trend?
           Logger.log "-> is on a downward trend (initial: #{asset.rate}, current: #{asset_history.rate})."
           if asset.shortable?
-            Logger.log '  -> Shorting'
+            Logger.log '-> Shorting'
             asset.short
             initialize_assets false
           else
-            Logger.log '  -> Not shortable.'
+            Logger.log '-> Not shortable.'
           end
 
         end
