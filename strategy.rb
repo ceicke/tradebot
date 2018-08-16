@@ -42,7 +42,7 @@ class Strategy
 
   def initialize_assets(initial = true)
     while Asset.active.size < $asset_amount
-      Logger.log "Current asset amount: #{Asset.all.size}."
+      Logger.log "Current asset amount: #{Asset.active.size}."
       a = Asset.new
       a.long
       sleep $sleep_time if initial
