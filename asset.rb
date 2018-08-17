@@ -90,9 +90,15 @@ class Asset < ActiveRecord::Base
 
   def plot_history
     puts ''
-    puts AsciiChart.plot((0...self.asset_histories.length).map { |i|
-      self.asset_histories[i].rate
-    }, {height: 10})
+    if self.asset_histories.length > 80
+      puts AsciiChart.plot((0...80).map { |i|
+        self.asset_histories[self.asset_histories.length - 80 + i].rate
+      }, {height: 10})
+    else
+      puts AsciiChart.plot((0...self.asset_histories.length).map { |i|
+        self.asset_histories[i].rate
+      }, {height: 10})
+    end
     puts ''
   end
 end
