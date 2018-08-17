@@ -13,7 +13,7 @@ class Strategy
         Logger.log "-= Asset #{asset.id} =-"
         asset_history = asset.record_history
         asset.plot_history
-        Logger.log "Win / Loss: #{asset.current_win} EUR"
+        Logger.log "Win / Loss: #{asset.current_win.round(2)} EUR"
 
         # do nothing if we only have one history point
         if asset.asset_histories.length < 10
